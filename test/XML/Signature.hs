@@ -99,7 +99,7 @@ serializationTests = U.test
             :| [])
           :| [])]]
 
-  , testXML "http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/signature-example-rsa.xml" $
+  , testXML "test/XML/signature-example-rsa.xml" $
     Signature Nothing
       (SignedInfo Nothing
         (CanonicalizationMethod
@@ -136,7 +136,7 @@ serializationTests = U.test
         : [])
       []
 
-  , testXML "http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/signature-example-dsa.xml" $
+  , testXML "test/XML/signature-example-dsa.xml" $
     Signature Nothing
       (SignedInfo Nothing
         (CanonicalizationMethod
