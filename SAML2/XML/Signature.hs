@@ -66,11 +66,11 @@ getID = HXT.deep . HXT.hasAttrValue "ID" . (==)
 
 applyCanonicalization :: CanonicalizationMethod -> Maybe String -> HXT.XmlTree -> IO BS.ByteString
 applyCanonicalization (CanonicalizationMethod (Identified a) ins []) = canonicalize a ins
-applyCanonicalization m = fail $ "applyCanonicalization: unsupported " ++ show m
+applyCanonicalization m = \_ _ -> fail $ "applyCanonicalization: unsupported " ++ show m
 
 applyTransformsBytes :: [Transform] -> BSL.ByteString -> IO BSL.ByteString
 applyTransformsBytes [] = return
-applyTransformsBytes ts@(_:_) = fail ("applyTransforms: unsupported XML:DSig transform: " ++ show ts)
+applyTransformsBytes ts@(_:_) = \_ -> fail ("applyTransforms: unsupported XML:DSig transform: " ++ show ts)
 
 applyTransformsXML :: [Transform] -> HXT.XmlTree -> IO BSL.ByteString
 applyTransformsXML (Transform (Identified (TransformCanonicalization a)) ins x : tl) =
